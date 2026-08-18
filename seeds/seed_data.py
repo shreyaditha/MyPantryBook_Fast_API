@@ -338,9 +338,9 @@ async def seed():
             )
             db.add(demo_user)
             await db.flush()
-            print("✅ Created demo user")
+            print("Created demo user")
         else:
-            print("ℹ️  Demo user already exists")
+            print("Demo user already exists")
 
         # ── Create ingredients ────────────────────────────────────────────────
         ing_map = {}  # name -> Ingredient.id
@@ -354,16 +354,16 @@ async def seed():
                 db.add(ing)
                 await db.flush()
                 ing_map[ing_data["name"]] = ing.id
-                print(f"  🌿 Added ingredient: {ing_data['name']}")
+                print(f"  Added ingredient: {ing_data['name']}")
 
-        print(f"✅ {len(ing_map)} ingredients ready")
+        print(f"{len(ing_map)} ingredients ready")
 
         # ── Create recipes ────────────────────────────────────────────────────
         created_recipes = 0
         for recipe_data in RECIPES:
             existing_r = await db.execute(select(Recipe).where(Recipe.title == recipe_data["title"]))
             if existing_r.scalar_one_or_none():
-                print(f"ℹ️  Recipe already exists: {recipe_data['title']}")
+                print(f"  Recipe already exists: {recipe_data['title']}")
                 continue
 
             recipe = Recipe(
@@ -382,7 +382,7 @@ async def seed():
             for ing_name, qty, unit in recipe_data["ingredients"]:
                 ing_id = ing_map.get(ing_name)
                 if not ing_id:
-                    print(f"  ⚠️  Unknown ingredient '{ing_name}' in recipe '{recipe_data['title']}'")
+                    print(f"  Unknown ingredient '{ing_name}' in recipe '{recipe_data['title']}'")
                     continue
                 ri = RecipeIngredient(
                     recipe_id=recipe.id,
@@ -392,12 +392,12 @@ async def seed():
                 )
                 db.add(ri)
 
-            print(f"  📖 Added recipe: {recipe_data['title']}")
+            print(f"  Added recipe: {recipe_data['title']}")
             created_recipes += 1
 
         await db.commit()
-        print(f"\n✅ Seed complete! {created_recipes} recipes added.")
-        print("🚀 Run the app with: python -m uvicorn app.main:app --reload")
+        print(f"\nSeed complete! {created_recipes} recipes added.")
+        print("Run the app with: python -m uvicorn app.main:app --reload")
 
 
 if __name__ == "__main__":

@@ -1,23 +1,25 @@
-# 🍲 My Pantry Book
+# My Pantry Book
 
 > **A warm, hand-illustrated, cookbook-style recipe & pantry manager for South Indian home cooking.**
+
+**Live Demo**: [https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app](https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app)
 
 Keep track of your pantry ingredients, browse traditional South Indian recipes, and instantly discover *"What can I cook right now?"* based on what's on your kitchen shelf.
 
 ---
 
-## ✨ Features
+## Features
 
-- 📖 **Editorial Cookbook Aesthetic**: Designed to feel like flipping through a homely handwritten recipe notebook — featuring warm terracotta and cream paper tones, Fraunces serif display typography, and Caveat handwritten accents.
-- 🫙 **Pantry Shelf Manager**: Log ingredient quantities and track expiry dates with visual freshness indicators (*Fresh*, *Soon*, *Urgent*).
-- 🍛 **South Indian Recipe Collection**: Pre-loaded with 26 authentic recipes (Masala Dosa, Plain Idli, Sambar, Rasam, Medu Vada, Appam, Avial, Bisi Bele Bath, etc.).
-- 💡 **"What Can I Cook?" Matcher**: Automatically cross-references your pantry against every recipe to rank what you can make tonight with match percentage progress bars.
-- 🔔 **Smart Expiry Alerts**: Receive automatic reminders for ingredients nearing their expiry date.
-- 🚀 **Serverless-Ready Deployment**: Configured out of the box for instant Vercel deployment with automatic `/tmp` database failover and auto-seeding.
+- **Editorial Cookbook Aesthetic**: Designed to feel like flipping through a homely handwritten recipe notebook — featuring warm terracotta and cream paper tones, Fraunces serif display typography, and Caveat handwritten accents.
+- **Pantry Shelf Manager**: Log ingredient quantities and track expiry dates with visual freshness indicators (*Fresh*, *Soon*, *Urgent*).
+- **South Indian Recipe Collection**: Pre-loaded with 26 authentic recipes (Masala Dosa, Plain Idli, Sambar, Rasam, Medu Vada, Appam, Avial, Bisi Bele Bath, etc.).
+- **"What Can I Cook?" Matcher**: Automatically cross-references your pantry against every recipe to rank what you can make tonight with match percentage progress bars.
+- **Smart Expiry Alerts**: Receive automatic reminders for ingredients nearing their expiry date.
+- **Serverless-Ready Deployment**: Configured out of the box for instant Vercel deployment with automatic `/tmp` database failover and auto-seeding.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Python 3.14+, [FastAPI](https://fastapi.tiangolo.com/)
 - **Database & ORM**: SQLite, [SQLAlchemy 2.0 (Asyncio)](https://www.sqlalchemy.org/), `aiosqlite`
@@ -26,7 +28,16 @@ Keep track of your pantry ingredients, browse traditional South Indian recipes, 
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## Live Links
+
+- **Home**: [https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/](https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/)
+- **Recipes**: [https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/recipes](https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/recipes)
+- **Pantry**: [https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/pantry](https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/pantry)
+- **Suggestions**: [https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/suggestions](https://my-pantry-book-8ym0azqm1-shreya-584f.vercel.app/suggestions)
+
+---
+
+## Quick Start (Local Development)
 
 ### 1. Clone & Setup Environment
 
@@ -71,7 +82,7 @@ Open your browser and navigate to:
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 fast_api_pantry/
@@ -109,7 +120,7 @@ fast_api_pantry/
 
 ---
 
-## 🌐 API Overview
+## API Overview
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -125,7 +136,7 @@ fast_api_pantry/
 
 ---
 
-## ☁️ Deployment (Vercel)
+## Deployment (Vercel)
 
 This repository includes a pre-configured `vercel.json` and Python entrypoint (`api/index.py`).
 
@@ -136,6 +147,6 @@ This repository includes a pre-configured `vercel.json` and Python entrypoint (`
 
 ---
 
-## 📄 License
+## License
 
-Distributed under the MIT License. Built with ❤️ for home cooking.
+Distributed under the MIT License. Built for home cooking.
