@@ -38,9 +38,13 @@
       </div>
     {% endif %}
 
-    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; align-items:center;">
       <a href="/recipes/{{ recipe.id }}/edit" class="btn btn-outline btn-sm">Edit Recipe</a>
-      <button class="btn btn-danger" onclick="deleteRecipe({{ recipe.id }})">Delete</button>
+      {% if recipe.created_by and recipe.id > 26 %}
+        <button class="btn btn-danger" onclick="deleteRecipe({{ recipe.id }})">Delete</button>
+      {% else %}
+        <span style="font-size:0.75rem; color:var(--ink-light); font-style:italic;">Default cookbook recipe (protected)</span>
+      {% endif %}
     </div>
   </div>
 
@@ -122,7 +126,14 @@ async function deleteRecipe(id) {
   if (!confirm('Delete this recipe?')) return;
   const res = await fetch('/api/recipes/' + id, { method: 'DELETE' });
   if (res.ok) { showToast('Recipe deleted'); setTimeout(() => location.href = '/recipes', 700); }
-  else showToast('Error', 'error');
+  else {
+    try {
+      const err = await res.json();
+      showToast(err.detail || 'Recipe cannot be deleted', 'error');
+    } catch(e) {
+      showToast('Protected recipe cannot be deleted', 'error');
+    }
+  }
 }
 </script>
 {% endblock %}

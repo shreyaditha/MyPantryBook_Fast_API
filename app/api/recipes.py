@@ -222,11 +222,16 @@ async def update_recipe(
 
 @router.delete("/{recipe_id}", status_code=204)
 async def delete_recipe(recipe_id: int, db: AsyncSession = Depends(get_db)):
-    """Delete a recipe."""
+    """Delete a recipe. Default cookbook recipes are protected from deletion."""
     result = await db.execute(select(Recipe).where(Recipe.id == recipe_id))
     recipe = result.scalar_one_or_none()
     if not recipe:
         raise HTTPException(status_code=404, detail="Recipe not found")
+    if recipe.created_by is None or recipe_id <= 26:
+        raise HTTPException(
+            status_code=403,
+            detail="Default South Indian cookbook recipes are protected and cannot be deleted."
+        )
     await db.delete(recipe)
 
 
