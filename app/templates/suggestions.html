@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}What Can I Cook? — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <div>
+      <h1>What Can I Cook?</h1>
+      <p class="text-muted mt-sm" style="font-family:var(--f-hand); font-size:1rem;">Recipes ranked by your pantry match</p>
+    </div>
+    <a href="/pantry" class="btn btn-outline btn-sm">Update Pantry</a>
+  </div>
+
+  {% if suggestions %}
+  <div class="recipe-grid-cards">
+    {% for item in suggestions %}
+    {% set r = item.recipe %}
+    {% set pct = item.match_pct %}
+    <a href="/recipes/{{ r.id }}" class="recipe-card-text">
+      <div class="card-tab {{ r.cuisine | lower | replace(' ', '-') }}"></div>
+      <div class="card-body">
+        <div class="card-ruled">
+          <div class="card-title">{{ r.title }}</div>
+        </div>
+
+        <div style="margin:4px 0 8px;">
+          <div class="match-progress">
+            <div class="match-progress-fill"
+              style="width:{{ pct }}%;
+              background:{% if pct == 100 %}#4A7A35{% elif pct >= 60 %}var(--olive){% else %}var(--mustard){% endif %};"></div>
+          </div>
+        </div>
+
+        <p style="font-family:var(--f-hand); font-size:0.92rem; color:{% if pct == 100 %}#4A7A35{% elif pct >= 60 %}var(--olive){% else %}var(--mustard){% endif %}; margin-bottom:6px;">
+          {{ item.matched }}/{{ item.total }} ingredients — {{ pct }}% ready
+        </p>
+
+        <div class="card-foot">
+          <span class="badge badge-cuisine">{{ r.cuisine }}</span>
+          <span class="card-match">
+            {% if pct == 100 %}Cook now
+            {% elif pct >= 75 %}Almost there
+            {% elif pct >= 50 %}Getting close
+            {% else %}Need more
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="empty-state">
+    <p class="empty-hand">— nothing yet —</p>
+    <h3>Add ingredients to your pantry first</h3>
+    <p>Once you have some ingredients, we'll match them against every recipe and rank what you can cook tonight.</p>
+    <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
+      <a href="/pantry" class="btn btn-primary">Fill the Pantry</a>
+      <a href="/recipes" class="btn btn-ghost">Browse Recipes</a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

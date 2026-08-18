@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found — My Pantry Book{% endblock %}
+{% block content %}
+<div class="page-wrapper text-center" style="padding-top:6rem;">
+  <div class="empty-state" style="max-width:440px; margin:0 auto;">
+    <div class="empty-state-icon">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="3"/>
+        <line x1="32" y1="20" x2="32" y2="34" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="32" cy="42" r="2" fill="currentColor"/>
+      </svg>
+    </div>
+    <h3 style="font-size:1.5rem;">Page not found</h3>
+    <p>This page doesn't exist, or it may have been moved.</p>
+    <a href="/" class="btn btn-primary mt-md">Go Home</a>
+  </div>
+</div>
+{% endblock %}

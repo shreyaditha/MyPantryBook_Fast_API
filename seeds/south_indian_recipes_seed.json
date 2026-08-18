@@ -1,0 +1,722 @@
+{
+  "recipes": [
+    {
+      "name": "Masala Dosa",
+      "region": "Karnataka/Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 480,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "fermented", "rice", "potato"],
+      "ingredients": [
+        {"name": "Idli Rice", "quantity": 3, "unit": "cup"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "cup"},
+        {"name": "Fenugreek Seeds", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Potato", "quantity": 4, "unit": "piece"},
+        {"name": "Onion", "quantity": 2, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Turmeric Powder", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Soak rice and urad dal with fenugreek separately for 6 hours, grind, mix, and ferment overnight.",
+        "Boil and mash potatoes; make a tempering of mustard seeds, curry leaves, onion, and turmeric, then mix in potatoes for the filling.",
+        "Spread fermented batter thin on a hot griddle to make a crisp dosa.",
+        "Place potato filling in the center and fold the dosa.",
+        "Serve hot with coconut chutney and sambar."
+      ]
+    },
+    {
+      "name": "Plain Idli",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 480,
+      "cook_time_minutes": 15,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "steamed", "fermented", "rice"],
+      "ingredients": [
+        {"name": "Idli Rice", "quantity": 2, "unit": "cup"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "cup"},
+        {"name": "Fenugreek Seeds", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Soak rice and urad dal with fenugreek separately for 6 hours.",
+        "Grind separately to a smooth batter, combine, and ferment overnight in a warm place.",
+        "Add salt, pour batter into greased idli molds.",
+        "Steam for 10-12 minutes until a toothpick comes out clean.",
+        "Serve hot with sambar and chutney."
+      ]
+    },
+    {
+      "name": "Sambar",
+      "region": "Tamil Nadu/Kerala",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 30,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["lunch", "dal", "vegetables", "tangy"],
+      "ingredients": [
+        {"name": "Toor Dal", "quantity": 1, "unit": "cup"},
+        {"name": "Tamarind", "quantity": 1, "unit": "tbsp"},
+        {"name": "Sambar Powder", "quantity": 2, "unit": "tbsp"},
+        {"name": "Drumstick", "quantity": 1, "unit": "piece"},
+        {"name": "Brinjal", "quantity": 1, "unit": "piece"},
+        {"name": "Pearl Onion", "quantity": 10, "unit": "piece"},
+        {"name": "Tomato", "quantity": 1, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"},
+        {"name": "Asafoetida", "quantity": 1, "unit": "pinch"}
+      ],
+      "instructions": [
+        "Pressure cook toor dal until soft and mash it.",
+        "Cook mixed vegetables with tamarind extract and sambar powder until tender.",
+        "Add the cooked dal and simmer until well combined.",
+        "Temper with mustard seeds, curry leaves, and asafoetida in oil, then pour over sambar.",
+        "Serve hot with rice or idli/dosa."
+      ]
+    },
+    {
+      "name": "Rasam",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["soup", "tangy", "comfort food"],
+      "ingredients": [
+        {"name": "Tomato", "quantity": 2, "unit": "piece"},
+        {"name": "Tamarind", "quantity": 1, "unit": "tbsp"},
+        {"name": "Rasam Powder", "quantity": 1, "unit": "tbsp"},
+        {"name": "Toor Dal", "quantity": 0.25, "unit": "cup"},
+        {"name": "Garlic", "quantity": 3, "unit": "clove"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Coriander Leaves", "quantity": 2, "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Cook toor dal until soft and mash it.",
+        "Boil tamarind extract with chopped tomatoes, garlic, and rasam powder.",
+        "Add mashed dal and enough water, simmer without boiling hard.",
+        "Temper mustard seeds, cumin, and curry leaves in ghee and add to the rasam.",
+        "Garnish with coriander leaves and serve hot."
+      ]
+    },
+    {
+      "name": "Medu Vada",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 240,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "snack", "fried", "lentil"],
+      "ingredients": [
+        {"name": "Urad Dal", "quantity": 2, "unit": "cup"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Black Pepper", "quantity": 1, "unit": "tsp"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Oil", "quantity": 3, "unit": "cup"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Soak urad dal for 4 hours and grind to a thick, fluffy batter with minimal water.",
+        "Mix in chopped green chilli, ginger, curry leaves, pepper, onion, and salt.",
+        "Shape into donut-like vadas using wet hands.",
+        "Deep fry in hot oil until golden brown and crisp.",
+        "Serve hot with sambar and coconut chutney."
+      ]
+    },
+    {
+      "name": "Uttapam",
+      "region": "Tamil Nadu/Karnataka",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 480,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "fermented", "rice"],
+      "ingredients": [
+        {"name": "Idli Rice", "quantity": 2, "unit": "cup"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "cup"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Tomato", "quantity": 1, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Coriander Leaves", "quantity": 2, "unit": "tbsp"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Use the same fermented dosa batter as a base.",
+        "Pour a thick ladle of batter on a hot griddle without spreading too thin.",
+        "Sprinkle chopped onion, tomato, green chilli, and coriander on top.",
+        "Drizzle oil, cook until the base is golden, then flip briefly.",
+        "Serve hot with chutney."
+      ]
+    },
+    {
+      "name": "Vegetable Upma",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "semolina", "quick"],
+      "ingredients": [
+        {"name": "Semolina (Rava)", "quantity": 1, "unit": "cup"},
+        {"name": "Carrot", "quantity": 1, "unit": "piece"},
+        {"name": "Green Peas", "quantity": 0.5, "unit": "cup"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Chana Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"}
+      ],
+      "instructions": [
+        "Dry roast semolina until fragrant and set aside.",
+        "Temper mustard seeds, chana dal, curry leaves, and green chilli in oil.",
+        "Saute onion and chopped vegetables until slightly soft.",
+        "Add water and salt, bring to a boil, then slowly stir in roasted semolina.",
+        "Cook until thick and fluffy, then serve hot."
+      ]
+    },
+    {
+      "name": "Ven Pongal",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 25,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "rice", "lentil", "comfort food"],
+      "ingredients": [
+        {"name": "Raw Rice", "quantity": 1, "unit": "cup"},
+        {"name": "Moong Dal", "quantity": 0.5, "unit": "cup"},
+        {"name": "Black Pepper", "quantity": 1, "unit": "tbsp"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tbsp"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Cashews", "quantity": 10, "unit": "piece"},
+        {"name": "Ghee", "quantity": 3, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Dry roast moong dal lightly, then pressure cook with rice until soft and mushy.",
+        "Crush pepper and cumin coarsely.",
+        "Heat ghee, fry cashews, crushed pepper-cumin, ginger, and curry leaves.",
+        "Pour the tempering over the cooked rice-dal mixture and mix well.",
+        "Serve hot with coconut chutney and sambar."
+      ]
+    },
+    {
+      "name": "Avial",
+      "region": "Kerala",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 25,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["lunch", "vegetables", "coconut"],
+      "ingredients": [
+        {"name": "Mixed Vegetables", "quantity": 4, "unit": "cup"},
+        {"name": "Fresh Coconut", "quantity": 1, "unit": "cup"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Green Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Yogurt (Curd)", "quantity": 0.5, "unit": "cup"},
+        {"name": "Coconut Oil", "quantity": 2, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"},
+        {"name": "Turmeric Powder", "quantity": 0.5, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Cook mixed vegetables (drumstick, carrot, beans, raw banana, yam) with turmeric until nearly tender.",
+        "Grind coconut, cumin, and green chilli to a coarse paste.",
+        "Add the paste to the cooked vegetables and simmer briefly.",
+        "Stir in curd and finish with a drizzle of raw coconut oil and curry leaves.",
+        "Serve with rice."
+      ]
+    },
+    {
+      "name": "Beans Poriyal",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 15,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["side dish", "vegetables", "coconut", "quick"],
+      "ingredients": [
+        {"name": "Green Beans", "quantity": 3, "unit": "cup"},
+        {"name": "Fresh Coconut", "quantity": 0.5, "unit": "cup"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Turmeric Powder", "quantity": 0.25, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Finely chop the green beans.",
+        "Temper mustard seeds, urad dal, curry leaves, and green chilli in oil.",
+        "Add beans, turmeric, and salt, then cook covered until tender.",
+        "Mix in grated coconut and saute for another 2 minutes.",
+        "Serve as a side with rice and sambar."
+      ]
+    },
+    {
+      "name": "Cabbage Kootu",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["side dish", "lentil", "vegetables"],
+      "ingredients": [
+        {"name": "Cabbage", "quantity": 3, "unit": "cup"},
+        {"name": "Moong Dal", "quantity": 0.5, "unit": "cup"},
+        {"name": "Fresh Coconut", "quantity": 0.25, "unit": "cup"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Turmeric Powder", "quantity": 0.25, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Cook moong dal until soft.",
+        "Grind coconut, cumin, and green chilli to a smooth paste.",
+        "Cook chopped cabbage with turmeric until tender, then add cooked dal.",
+        "Stir in the coconut paste and simmer for a few minutes.",
+        "Temper with mustard seeds and pour over before serving."
+      ]
+    },
+    {
+      "name": "Coconut Chutney",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 5,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["condiment", "coconut", "quick"],
+      "ingredients": [
+        {"name": "Fresh Coconut", "quantity": 1, "unit": "cup"},
+        {"name": "Chana Dal", "quantity": 2, "unit": "tbsp"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tsp"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Salt", "quantity": 0.5, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Grind coconut, chana dal, green chilli, ginger, and salt with a little water to a smooth paste.",
+        "Temper mustard seeds and curry leaves in oil.",
+        "Pour tempering over the chutney and mix.",
+        "Serve with idli, dosa, or vada."
+      ]
+    },
+    {
+      "name": "Tomato Chutney",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 15,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["condiment", "tangy", "quick"],
+      "ingredients": [
+        {"name": "Tomato", "quantity": 4, "unit": "piece"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Garlic", "quantity": 4, "unit": "clove"},
+        {"name": "Dried Red Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Saute onion, garlic, and dried red chilli until soft.",
+        "Add chopped tomatoes and cook until mushy.",
+        "Cool and grind to a coarse paste with salt.",
+        "Temper mustard seeds, urad dal, and curry leaves in oil and pour over.",
+        "Serve with idli or dosa."
+      ]
+    },
+    {
+      "name": "Bisi Bele Bath",
+      "region": "Karnataka",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 35,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["lunch", "rice", "lentil", "one-pot"],
+      "ingredients": [
+        {"name": "Raw Rice", "quantity": 1, "unit": "cup"},
+        {"name": "Toor Dal", "quantity": 0.5, "unit": "cup"},
+        {"name": "Mixed Vegetables", "quantity": 2, "unit": "cup"},
+        {"name": "Sambar Powder", "quantity": 3, "unit": "tbsp"},
+        {"name": "Tamarind", "quantity": 2, "unit": "tbsp"},
+        {"name": "Peanuts", "quantity": 0.25, "unit": "cup"},
+        {"name": "Ghee", "quantity": 2, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Pressure cook rice and toor dal together until soft.",
+        "Cook mixed vegetables with tamarind extract and sambar powder.",
+        "Combine the cooked rice-dal with the vegetable mixture and simmer, adding water to reach a semi-thick consistency.",
+        "Temper peanuts and curry leaves in ghee and mix in.",
+        "Serve hot with a dollop of ghee."
+      ]
+    },
+    {
+      "name": "Curd Rice",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 10,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["lunch", "rice", "cooling", "quick"],
+      "ingredients": [
+        {"name": "Raw Rice", "quantity": 1, "unit": "cup"},
+        {"name": "Yogurt (Curd)", "quantity": 2, "unit": "cup"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Cook rice until soft and mash slightly while warm.",
+        "Mix in curd and a little milk once the rice has cooled a bit.",
+        "Temper mustard seeds, urad dal, green chilli, ginger, and curry leaves in oil.",
+        "Pour tempering over the curd rice and mix well.",
+        "Serve chilled or at room temperature."
+      ]
+    },
+    {
+      "name": "Lemon Rice",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 10,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["lunch", "rice", "tangy", "quick"],
+      "ingredients": [
+        {"name": "Raw Rice", "quantity": 2, "unit": "cup"},
+        {"name": "Lemon", "quantity": 2, "unit": "piece"},
+        {"name": "Peanuts", "quantity": 0.25, "unit": "cup"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Chana Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Urad Dal", "quantity": 1, "unit": "tsp"},
+        {"name": "Turmeric Powder", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"}
+      ],
+      "instructions": [
+        "Cook rice and let it cool to room temperature.",
+        "Temper mustard seeds, chana dal, urad dal, peanuts, curry leaves, and green chilli in oil.",
+        "Add turmeric powder and cooked rice, mixing gently.",
+        "Turn off the heat and squeeze in fresh lemon juice, mixing well.",
+        "Serve at room temperature."
+      ]
+    },
+    {
+      "name": "Puliyodarai (Tamarind Rice)",
+      "region": "Tamil Nadu",
+      "cuisine": "Tamil",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["lunch", "rice", "tangy", "festival food"],
+      "ingredients": [
+        {"name": "Raw Rice", "quantity": 2, "unit": "cup"},
+        {"name": "Tamarind", "quantity": 3, "unit": "tbsp"},
+        {"name": "Peanuts", "quantity": 0.25, "unit": "cup"},
+        {"name": "Dried Red Chilli", "quantity": 4, "unit": "piece"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"},
+        {"name": "Turmeric Powder", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Jaggery", "quantity": 1, "unit": "tsp"},
+        {"name": "Sambar Powder", "quantity": 1, "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Cook rice and spread it out to cool.",
+        "Extract thick tamarind pulp and simmer with turmeric and jaggery until thick.",
+        "Temper mustard seeds, peanuts, dried red chilli and curry leaves in oil, add the tamarind paste and sambar powder, cook until oil separates.",
+        "Mix the tamarind base into cooled rice and let flavors settle before serving.",
+        "Serve at room temperature."
+      ]
+    },
+    {
+      "name": "Appam",
+      "region": "Kerala",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 480,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "fermented", "rice", "coconut"],
+      "ingredients": [
+        {"name": "Idli Rice", "quantity": 2, "unit": "cup"},
+        {"name": "Fresh Coconut", "quantity": 1, "unit": "cup"},
+        {"name": "Sugar", "quantity": 1, "unit": "tbsp"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Soak raw rice for 4-5 hours, then grind with cooked rice and coconut to a smooth batter.",
+        "Add a little yeast or fermented batter, ferment for 6-8 hours.",
+        "Add salt and thin the batter to a pourable consistency.",
+        "Pour a ladle into a hot appam pan, swirl to coat the sides thinly, and cover to cook until the center is soft and edges are crisp.",
+        "Serve with Kerala vegetable stew."
+      ]
+    },
+    {
+      "name": "Kerala Vegetable Stew",
+      "region": "Kerala",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 25,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["lunch", "coconut milk", "vegetables"],
+      "ingredients": [
+        {"name": "Mixed Vegetables", "quantity": 3, "unit": "cup"},
+        {"name": "Coconut Milk", "quantity": 2, "unit": "cup"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"},
+        {"name": "Coconut Oil", "quantity": 2, "unit": "tbsp"}
+      ],
+      "instructions": [
+        "Saute onion, ginger, green chilli, and whole spices in coconut oil.",
+        "Add mixed vegetables and thin coconut milk, cook until vegetables are tender.",
+        "Pour in thick coconut milk and simmer gently without boiling.",
+        "Finish with curry leaves and a drizzle of raw coconut oil.",
+        "Serve warm with appam."
+      ]
+    },
+    {
+      "name": "Chettinad Chicken Curry",
+      "region": "Tamil Nadu (Chettinad)",
+      "cuisine": "Tamil",
+      "prep_time_minutes": 20,
+      "cook_time_minutes": 35,
+      "servings": 4,
+      "difficulty": "hard",
+      "is_vegetarian": false,
+      "tags": ["lunch", "spicy", "non-vegetarian"],
+      "ingredients": [
+        {"name": "Chicken", "quantity": 750, "unit": "grams"},
+        {"name": "Fresh Coconut", "quantity": 0.5, "unit": "cup"},
+        {"name": "Dried Red Chilli", "quantity": 6, "unit": "piece"},
+        {"name": "Coriander Seeds", "quantity": 2, "unit": "tbsp"},
+        {"name": "Fennel Seeds", "quantity": 1, "unit": "tbsp"},
+        {"name": "Onion", "quantity": 2, "unit": "piece"},
+        {"name": "Tomato", "quantity": 2, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Garlic", "quantity": 6, "unit": "clove"},
+        {"name": "Curry Leaves", "quantity": 10, "unit": "piece"}
+      ],
+      "instructions": [
+        "Dry roast coconut, dried red chilli, coriander seeds, and fennel seeds, then grind to a paste.",
+        "Saute onion until golden, add ginger and garlic and cook until raw smell fades.",
+        "Add chopped tomatoes and cook until soft, then stir in the ground masala paste.",
+        "Add chicken pieces, mix well, and cook covered until chicken is tender, adding water as needed.",
+        "Garnish with curry leaves and serve with rice or parotta."
+      ]
+    },
+    {
+      "name": "Paruppu Curry (Dal Curry)",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 10,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["lunch", "lentil", "quick"],
+      "ingredients": [
+        {"name": "Toor Dal", "quantity": 1, "unit": "cup"},
+        {"name": "Tomato", "quantity": 1, "unit": "piece"},
+        {"name": "Turmeric Powder", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Garlic", "quantity": 4, "unit": "clove"},
+        {"name": "Mustard Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Dried Red Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Pressure cook toor dal with tomato and turmeric until soft, then mash.",
+        "Temper mustard seeds, cumin, dried red chilli, garlic, and curry leaves in ghee.",
+        "Pour the tempering over the cooked dal and simmer for a few minutes.",
+        "Adjust consistency with water and season with salt.",
+        "Serve hot with rice and a drizzle of ghee."
+      ]
+    },
+    {
+      "name": "Rava Kesari",
+      "region": "South India",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 5,
+      "cook_time_minutes": 15,
+      "servings": 4,
+      "difficulty": "easy",
+      "is_vegetarian": true,
+      "tags": ["dessert", "semolina", "sweet", "quick"],
+      "ingredients": [
+        {"name": "Semolina (Rava)", "quantity": 1, "unit": "cup"},
+        {"name": "Sugar", "quantity": 1, "unit": "cup"},
+        {"name": "Ghee", "quantity": 0.25, "unit": "cup"},
+        {"name": "Cashews", "quantity": 10, "unit": "piece"},
+        {"name": "Raisins", "quantity": 10, "unit": "piece"},
+        {"name": "Cardamom Powder", "quantity": 0.5, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Roast semolina in a tablespoon of ghee until aromatic and light golden.",
+        "Boil water with a pinch of saffron or food color.",
+        "Slowly pour the roasted semolina into the boiling water, stirring continuously to avoid lumps.",
+        "Add sugar and cook until the mixture thickens, then stir in cardamom powder and remaining ghee.",
+        "Garnish with ghee-fried cashews and raisins, and serve warm."
+      ]
+    },
+    {
+      "name": "Pesarattu",
+      "region": "Andhra Pradesh",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 360,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "lentil", "protein-rich"],
+      "ingredients": [
+        {"name": "Moong Dal", "quantity": 2, "unit": "cup"},
+        {"name": "Raw Rice", "quantity": 0.25, "unit": "cup"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Green Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Soak whole green gram and rice together for 5-6 hours.",
+        "Grind with ginger, green chilli, and cumin seeds to a smooth batter; no fermentation needed.",
+        "Spread the batter thin on a hot griddle like a dosa.",
+        "Sprinkle chopped onion on top and drizzle oil, cook until crisp.",
+        "Serve hot with ginger chutney."
+      ]
+    },
+    {
+      "name": "Adai",
+      "region": "Tamil Nadu",
+      "cuisine": "Tamil",
+      "prep_time_minutes": 240,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "lentil", "protein-rich"],
+      "ingredients": [
+        {"name": "Idli Rice", "quantity": 1, "unit": "cup"},
+        {"name": "Toor Dal", "quantity": 0.25, "unit": "cup"},
+        {"name": "Chana Dal", "quantity": 0.25, "unit": "cup"},
+        {"name": "Urad Dal", "quantity": 0.25, "unit": "cup"},
+        {"name": "Dried Red Chilli", "quantity": 4, "unit": "piece"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Asafoetida (Hing)", "quantity": 1, "unit": "pinch"}
+      ],
+      "instructions": [
+        "Soak rice and all dals together with dried red chilli for 3-4 hours.",
+        "Grind coarsely (not too smooth) with salt and asafoetida.",
+        "Mix in chopped onion and curry leaves.",
+        "Spread thick on a hot griddle and drizzle oil around the edges.",
+        "Cook both sides until golden and serve hot with jaggery and butter or chutney."
+      ]
+    },
+    {
+      "name": "Vegetable Kurma",
+      "region": "Tamil Nadu",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 15,
+      "cook_time_minutes": 25,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["side dish", "coconut", "vegetables", "gravy"],
+      "ingredients": [
+        {"name": "Mixed Vegetables", "quantity": 3, "unit": "cup"},
+        {"name": "Fresh Coconut", "quantity": 0.5, "unit": "cup"},
+        {"name": "Chana Dal", "quantity": 2, "unit": "tbsp"},
+        {"name": "Green Chilli", "quantity": 3, "unit": "piece"},
+        {"name": "Fennel Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Tomato", "quantity": 1, "unit": "piece"},
+        {"name": "Ginger", "quantity": 1, "unit": "tbsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"}
+      ],
+      "instructions": [
+        "Grind coconut, chana dal, green chilli, and fennel seeds to a smooth paste.",
+        "Saute onion until translucent, add ginger, then chopped tomato and cook until soft.",
+        "Add mixed vegetables with a little water and cook until nearly tender.",
+        "Stir in the ground coconut paste and simmer until the gravy thickens slightly.",
+        "Garnish with curry leaves and serve with idiyappam, chapati, or dosa."
+      ]
+    },
+    {
+      "name": "Rava Dosa",
+      "region": "Karnataka",
+      "cuisine": "South Indian",
+      "prep_time_minutes": 30,
+      "cook_time_minutes": 20,
+      "servings": 4,
+      "difficulty": "medium",
+      "is_vegetarian": true,
+      "tags": ["breakfast", "semolina", "crispy", "no fermentation"],
+      "ingredients": [
+        {"name": "Semolina (Rava)", "quantity": 1, "unit": "cup"},
+        {"name": "Onion", "quantity": 1, "unit": "piece"},
+        {"name": "Green Chilli", "quantity": 2, "unit": "piece"},
+        {"name": "Cumin Seeds", "quantity": 1, "unit": "tsp"},
+        {"name": "Curry Leaves", "quantity": 8, "unit": "piece"},
+        {"name": "Black Pepper", "quantity": 0.5, "unit": "tsp"},
+        {"name": "Salt", "quantity": 1, "unit": "tsp"}
+      ],
+      "instructions": [
+        "Mix semolina with water to a thin, watery batter and rest for 20-30 minutes.",
+        "Add finely chopped onion, green chilli, cumin, curry leaves, and pepper to the batter.",
+        "Pour the batter from a height in a circular motion onto a hot, well-greased griddle to form a lacy dosa.",
+        "Drizzle oil around the edges and cook until crisp and golden.",
+        "Flip briefly, then serve hot with coconut chutney."
+      ]
+    }
+  ]
+}

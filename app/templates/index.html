@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}My Pantry Book — South Indian Home Cooking{% endblock %}
+{% block description %}Track your pantry, browse South Indian recipes, and discover what you can cook tonight.{% endblock %}
+
+{% block content %}
+<div class="cover-page">
+  <div class="cover-inner">
+
+    <p class="cover-eyebrow">A South Indian Kitchen Notebook</p>
+
+    <h1 class="cover-title">
+      My<br>
+      <span>Pantry</span><br>
+      Book
+    </h1>
+
+    <p class="cover-subtitle">by your kitchen, for your kitchen</p>
+
+    <div class="cover-rule">
+      <div class="cover-rule-dot"></div>
+      <div class="cover-rule-dot"></div>
+      <div class="cover-rule-dot"></div>
+    </div>
+
+    <p class="cover-desc">
+      Keep track of what's in your kitchen, browse traditional South Indian recipes,
+      and find out what you can cook tonight — just like flipping through Amma's handwritten cookbook.
+    </p>
+
+    <nav class="cover-nav">
+      <a href="/pantry">Pantry Shelf</a>
+      <a href="/recipes">Recipe Book</a>
+      <a href="/suggestions">What Can I Cook?</a>
+    </nav>
+
+    <p class="cover-footer">
+      8 South Indian recipes &nbsp;&middot;&nbsp; 43 pantry ingredients
+    </p>
+
+  </div>
+</div>
+{% endblock %}

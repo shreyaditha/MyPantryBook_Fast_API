@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Recipe Book — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <div>
+      <h1>Recipe Book</h1>
+      <p class="text-muted mt-sm" style="font-family:var(--f-hand); font-size:1rem;">{{ recipe_data|length }} recipe{{ 's' if recipe_data|length != 1 }}</p>
+    </div>
+    <a href="/recipes/new" class="btn btn-primary">Add Recipe</a>
+  </div>
+
+  <!-- Filter -->
+  <form class="filter-bar" method="get" action="/recipes">
+    <div class="filter-group">
+      <label for="search-input">Search</label>
+      <input type="text" id="search-input" name="search" placeholder="Dosa, Sambar…" value="{{ search or '' }}">
+    </div>
+    <div class="filter-group">
+      <label for="cuisine-select">Cuisine</label>
+      <select id="cuisine-select" name="cuisine">
+        <option value="">All cuisines</option>
+        <option value="South Indian" {% if cuisine == 'South Indian' %}selected{% endif %}>South Indian</option>
+        <option value="Tamil"        {% if cuisine == 'Tamil' %}selected{% endif %}>Tamil</option>
+        <option value="Kerala"       {% if cuisine == 'Kerala' %}selected{% endif %}>Kerala</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="prep-select">Max Prep Time</label>
+      <select id="prep-select" name="max_prep_time">
+        <option value="">Any</option>
+        <option value="15"  {% if max_prep_time == 15  %}selected{% endif %}>Under 15 min</option>
+        <option value="30"  {% if max_prep_time == 30  %}selected{% endif %}>Under 30 min</option>
+        <option value="60"  {% if max_prep_time == 60  %}selected{% endif %}>Under 1 hour</option>
+        <option value="120" {% if max_prep_time == 120 %}selected{% endif %}>Under 2 hours</option>
+      </select>
+    </div>
+    <div class="filter-group toggle-group" style="align-self:flex-end; padding-bottom:8px;">
+      <label class="toggle" for="avail-toggle">
+        <input type="checkbox" id="avail-toggle" name="available_only" value="true"
+          {% if available_only %}checked{% endif %} onchange="this.form.submit()">
+        <span class="toggle-slider"></span>
+      </label>
+      <span class="toggle-label">Pantry-ready only</span>
+    </div>
+    <div style="align-self:flex-end; display:flex; gap:6px;">
+      <button type="submit" class="btn btn-secondary btn-sm">Filter</button>
+      <a href="/recipes" class="btn btn-ghost btn-sm">Clear</a>
+    </div>
+  </form>
+
+  {% if recipe_data %}
+  <!-- Text-only index cards — no images -->
+  <div class="recipe-grid-cards">
+    {% for item in recipe_data %}
+    {% set r = item.recipe %}
+    {% set pct = item.match_pct %}
+    <a href="/recipes/{{ r.id }}" class="recipe-card-text">
+      <div class="card-tab {{ r.cuisine | lower | replace(' ', '-') }}"></div>
+      <div class="card-body">
+        <div class="card-ruled">
+          <div class="card-title">{{ r.title }}</div>
+        </div>
+        {% if r.description %}
+          <p class="card-desc">{{ r.description[:95] }}{% if r.description|length > 95 %}…{% endif %}</p>
+        {% endif %}
+        <div class="card-foot">
+          <div>
+            <span class="badge badge-cuisine">{{ r.cuisine }}</span>
+            &nbsp;
+            <span class="badge badge-time">{{ r.prep_time_minutes }} min</span>
+          </div>
+          <span class="card-match">
+            {% if pct == 100 %}Ready to cook
+            {% elif pct > 0 %}{{ pct }}% ready
+            {% else %}—
+            {% endif %}
+          </span>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="empty-state">
+    <p class="empty-hand">— empty —</p>
+    <h3>No recipes found</h3>
+    <p>
+      {% if search or cuisine or max_prep_time or available_only %}
+        Try adjusting the filters, or <a href="/recipes">clear all</a>.
+      {% else %}
+        The recipe book is empty. Add your first recipe to get started.
+      {% endif %}
+    </p>
+    <a href="/recipes/new" class="btn btn-primary mt-md">Add a Recipe</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

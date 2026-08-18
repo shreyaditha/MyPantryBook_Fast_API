@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }} — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+
+  <p style="font-size:0.78rem; color:var(--ink-light); font-style:italic; margin-bottom:24px;">
+    <a href="/recipes" style="color:var(--ink-light);">Recipe Book</a> &rsaquo; {{ recipe.title }}
+  </p>
+
+  <!-- Recipe heading -->
+  <div style="margin-bottom:32px; padding-bottom:24px; border-bottom:2px solid var(--border);">
+    <h1 style="font-family:var(--f-display); font-style:italic; font-size:clamp(1.8rem,5vw,3rem); font-weight:900; line-height:1.1; margin-bottom:12px;">
+      {{ recipe.title }}
+    </h1>
+    {% if recipe.description %}
+      <p style="font-style:italic; color:var(--ink-light); font-size:0.95rem; max-width:600px; line-height:1.75; margin-bottom:16px;">{{ recipe.description }}</p>
+    {% endif %}
+    <div class="recipe-hero-meta">
+      <span class="badge badge-cuisine">{{ recipe.cuisine }}</span>
+      <span class="badge badge-time">{{ recipe.prep_time_minutes }} min</span>
+      <span class="badge badge-diff">{{ recipe.difficulty|title }}</span>
+      <span class="badge badge-time">{{ recipe.servings }} servings</span>
+    </div>
+
+    {% set total_ing = recipe.recipe_ingredients|length %}
+    {% set have_count = recipe.recipe_ingredients | selectattr('ingredient_id', 'in', pantry_ids) | list | length %}
+    {% if total_ing > 0 %}
+      {% set match_pct = ((have_count / total_ing) * 100) | round | int %}
+      <div style="margin-top:14px; display:flex; align-items:center; gap:12px;">
+        <div class="match-progress" style="width:140px;">
+          <div class="match-progress-fill" style="width:{{ match_pct }}%;
+            background:{% if match_pct == 100 %}#4A7A35{% elif match_pct >= 50 %}var(--olive){% else %}var(--mustard){% endif %};"></div>
+        </div>
+        <span style="font-family:var(--f-hand); font-size:1rem; color:var(--olive);">
+          {{ have_count }}/{{ total_ing }} ingredients in pantry
+        </span>
+      </div>
+    {% endif %}
+
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+      <a href="/recipes/{{ recipe.id }}/edit" class="btn btn-outline btn-sm">Edit Recipe</a>
+      <button class="btn btn-danger" onclick="deleteRecipe({{ recipe.id }})">Delete</button>
+    </div>
+  </div>
+
+  <!-- Open-book layout -->
+  <div class="book-spread">
+
+    <!-- Left: Ingredients -->
+    <div class="book-page book-page-left">
+      <p class="book-page-label">Ingredients</p>
+
+      {% set total_ing = recipe.recipe_ingredients|length %}
+      {% set have_count = recipe.recipe_ingredients | selectattr('ingredient_id', 'in', pantry_ids) | list | length %}
+
+      {% for ri in recipe.recipe_ingredients %}
+      <div class="ingredient-row">
+        {% if ri.ingredient_id in pantry_ids %}
+          <div class="ing-check have">
+            <svg viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="1,5 3.5,7.5 8,2"/>
+            </svg>
+          </div>
+        {% else %}
+          <div class="ing-check miss">
+            <svg viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="2" y1="2" x2="7" y2="7"/><line x1="7" y1="2" x2="2" y2="7"/>
+            </svg>
+          </div>
+        {% endif %}
+        <span class="ingredient-name">{{ ri.ingredient.name }}</span>
+        <span class="ingredient-qty">{{ ri.quantity_needed }} {{ ri.unit }}</span>
+      </div>
+      {% else %}
+        <p style="font-style:italic; color:var(--ink-light); font-size:0.85rem;">No ingredients listed.</p>
+      {% endfor %}
+
+      {% if total_ing > 0 %}
+        {% if have_count == total_ing %}
+          <div style="margin-top:20px; padding:10px 14px; background:rgba(78,95,53,0.08); border-left:3px solid var(--olive);">
+            <p style="font-family:var(--f-hand); font-size:1rem; color:var(--olive);">You have everything — ready to cook!</p>
+          </div>
+        {% else %}
+          {% set missing_ings = recipe.recipe_ingredients | rejectattr('ingredient_id', 'in', pantry_ids) | list %}
+          {% if missing_ings %}
+          <div style="margin-top:20px; padding:10px 14px; background:rgba(184,74,42,0.04); border-left:3px solid var(--border);">
+            <p style="font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--rust); margin-bottom:6px;">Still need:</p>
+            {% for ri in missing_ings %}
+              <p style="font-size:0.82rem; font-style:italic; color:var(--rust); margin-bottom:2px;">{{ ri.ingredient.name }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- Right: Instructions -->
+    <div class="book-page book-page-right">
+      <p class="book-page-label">Instructions</p>
+      {% if steps %}
+        <ol class="step-list">
+          {% for step in steps %}
+          <li class="step-item">
+            <div class="step-marker">{{ loop.index }}</div>
+            <div class="step-content">{{ step }}</div>
+          </li>
+          {% endfor %}
+        </ol>
+      {% else %}
+        <p style="font-style:italic; color:var(--ink-light); font-size:0.85rem;">No instructions yet. <a href="/recipes/{{ recipe.id }}/edit">Add some.</a></p>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function deleteRecipe(id) {
+  if (!confirm('Delete this recipe?')) return;
+  const res = await fetch('/api/recipes/' + id, { method: 'DELETE' });
+  if (res.ok) { showToast('Recipe deleted'); setTimeout(() => location.href = '/recipes', 700); }
+  else showToast('Error', 'error');
+}
+</script>
+{% endblock %}

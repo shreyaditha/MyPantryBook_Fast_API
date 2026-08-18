@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% block title %}Pantry Shelf — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <div>
+      <h1>Pantry Shelf</h1>
+      <p class="text-muted mt-sm" style="font-family:var(--f-hand); font-size:1rem;">{{ items|length }} item{{ 's' if items|length != 1 }} on your shelf</p>
+    </div>
+    <button class="btn btn-primary" id="toggle-add-btn">Add Ingredient</button>
+  </div>
+
+  <!-- Add form -->
+  <div id="add-form-wrapper" style="display:none; margin-bottom:28px;">
+    <div class="form-card">
+      <p class="form-section-title">Add to Pantry</p>
+      <form id="add-pantry-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ingredient-select">Ingredient</label>
+            <select id="ingredient-select" name="ingredient_id" required>
+              <option value="">— Choose —</option>
+              {% for ing in ingredients %}
+              <option value="{{ ing.id }}">{{ ing.name }} ({{ ing.unit }})</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="qty-input">Quantity</label>
+            <input type="number" id="qty-input" name="quantity" value="1" min="0.01" step="0.01" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="expiry-input">Expiry Date <span style="text-transform:none; font-weight:400;">(optional)</span></label>
+          <input type="date" id="expiry-input" name="expiry_date">
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="submit" class="btn btn-primary">Add to Shelf</button>
+          <button type="button" class="btn btn-ghost" id="cancel-add">Cancel</button>
+        </div>
+      </form>
+
+      <hr class="divider divider-dashed" style="margin-top:24px;">
+      <p style="font-family:var(--f-hand); font-size:0.95rem; color:var(--ink-light); margin-bottom:12px;">Not listed? Add a new ingredient first:</p>
+      <form id="add-ing-form">
+        <div class="ingredient-form-row" style="border:none; padding:0;">
+          <input type="text" placeholder="Ingredient name" id="new-ing-name" required>
+          <select id="new-ing-unit">
+            <option>grams</option><option>ml</option><option>pieces</option>
+            <option>tbsp</option><option>tsp</option><option>cups</option>
+          </select>
+          <select id="new-ing-cat">
+            <option value="grain">Grain</option><option value="lentil">Lentil</option>
+            <option value="veg">Vegetable</option><option value="spice">Spice</option>
+            <option value="dairy">Dairy</option><option value="oil">Oil</option>
+            <option value="other" selected>Other</option>
+          </select>
+          <button type="submit" class="btn btn-secondary btn-sm">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Ledger table -->
+  {% if items %}
+  <table class="pantry-table" id="pantry-grid">
+    <thead>
+      <tr>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Expiry</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+    {% if item.expiry_date %}
+      {% set diff = (item.expiry_date - now_date).days %}
+      {% if diff <= 3 %}{% set ec = "expiry-urgent" %}{% set el = "In " ~ diff ~ " day" ~ ("s" if diff != 1) if diff > 0 else "Today!" %}
+      {% elif diff <= 7 %}{% set ec = "expiry-soon" %}{% set el = diff ~ " days left" %}
+      {% else %}{% set ec = "expiry-fresh" %}{% set el = item.expiry_date.strftime('%d %b %Y') %}{% endif %}
+    {% else %}{% set ec = "expiry-none" %}{% set el = "—" %}{% endif %}
+
+    <tr id="pantry-item-{{ item.id }}">
+      <td class="pantry-ing-name">{{ item.ingredient.name }}</td>
+      <td class="pantry-qty">{{ item.quantity }} {{ item.ingredient.unit }}</td>
+      <td><span style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px; color:var(--ink-light);">{{ item.ingredient.category }}</span></td>
+      <td class="{{ ec }}">{{ el }}</td>
+      <td style="text-align:right; white-space:nowrap;">
+        <button class="btn btn-ghost btn-sm" style="margin-right:4px;"
+          onclick="editItem({{ item.id }}, {{ item.quantity }}, '{{ item.expiry_date or '' }}')">Edit</button>
+        <button class="btn btn-danger"
+          onclick="deleteItem({{ item.id }})">Remove</button>
+      </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}
+  <div class="empty-state">
+    <p class="empty-hand">— empty shelf —</p>
+    <h3>Nothing here yet</h3>
+    <p>Add your first ingredient to start building your South Indian kitchen pantry.</p>
+    <button class="btn btn-primary mt-md" onclick="document.getElementById('toggle-add-btn').click()">Add First Ingredient</button>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Edit modal -->
+<div id="edit-modal" style="display:none; position:fixed; inset:0; background:rgba(46,30,15,0.5); z-index:200; align-items:center; justify-content:center;">
+  <div class="form-card" style="max-width:360px; width:90%; margin:auto;">
+    <p class="form-section-title">Edit Item</p>
+    <form id="edit-form">
+      <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" id="edit-qty" min="0.01" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="date" id="edit-expiry">
+      </div>
+      <div style="display:flex; gap:8px; margin-top:12px;">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-ghost" onclick="closeEdit()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let editId = null;
+document.getElementById('toggle-add-btn').addEventListener('click', () => {
+  const w = document.getElementById('add-form-wrapper');
+  w.style.display = w.style.display === 'none' ? 'block' : 'none';
+});
+document.getElementById('cancel-add').addEventListener('click', () => {
+  document.getElementById('add-form-wrapper').style.display = 'none';
+});
+
+document.getElementById('add-pantry-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const f = e.target;
+  const res = await fetch('/api/pantry', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ ingredient_id:parseInt(f.ingredient_id.value), quantity:parseFloat(f.quantity.value), expiry_date:f.expiry_date.value||null })
+  });
+  if (res.ok) { showToast('Added to pantry'); setTimeout(() => location.reload(), 700); }
+  else { const e = await res.json(); showToast(e.detail||'Error','error'); }
+});
+
+document.getElementById('add-ing-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const res = await fetch('/api/ingredients', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ name:document.getElementById('new-ing-name').value, unit:document.getElementById('new-ing-unit').value, category:document.getElementById('new-ing-cat').value })
+  });
+  if (res.ok) {
+    const ing = await res.json();
+    const sel = document.getElementById('ingredient-select');
+    const opt = document.createElement('option'); opt.value=ing.id; opt.textContent=ing.name+' ('+ing.unit+')'; sel.appendChild(opt); sel.value=ing.id;
+    document.getElementById('new-ing-name').value='';
+    showToast(ing.name+' added');
+  } else { const e=await res.json(); showToast(e.detail||'Error','error'); }
+});
+
+async function deleteItem(id) {
+  if (!confirm('Remove from pantry?')) return;
+  const res = await fetch('/api/pantry/'+id, {method:'DELETE'});
+  if (res.ok) { document.getElementById('pantry-item-'+id)?.remove(); showToast('Removed'); }
+  else showToast('Error','error');
+}
+function editItem(id, qty, exp) {
+  editId = id;
+  document.getElementById('edit-qty').value = qty;
+  document.getElementById('edit-expiry').value = exp;
+  document.getElementById('edit-modal').style.display = 'flex';
+}
+function closeEdit() { document.getElementById('edit-modal').style.display = 'none'; }
+document.getElementById('edit-modal').addEventListener('click', e => { if(e.target===document.getElementById('edit-modal')) closeEdit(); });
+document.getElementById('edit-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const res = await fetch('/api/pantry/'+editId, {
+    method:'PATCH', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ quantity:parseFloat(document.getElementById('edit-qty').value), expiry_date:document.getElementById('edit-expiry').value||null })
+  });
+  if (res.ok) { showToast('Updated'); closeEdit(); setTimeout(() => location.reload(), 600); }
+  else showToast('Error','error');
+});
+</script>
+{% endblock %}

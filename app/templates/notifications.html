@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Alerts — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1>Alerts</h1>
+    {% if notifications %}
+    <button class="btn btn-ghost btn-sm" id="clear-read-btn">Clear read</button>
+    {% endif %}
+  </div>
+
+  {% if notifications %}
+  <div id="notif-list">
+    {% for n in notifications %}
+    <div class="notification-item {% if n.is_read %}read{% endif %}" id="notif-{{ n.id }}">
+      <div style="flex:1;">
+        <p style="font-size:0.92rem; font-style:italic; margin-bottom:4px;">{{ n.message }}</p>
+        <p style="font-size:0.72rem; color:var(--ink-light); font-family:var(--f-hand);">{{ n.created_at.strftime('%d %B %Y, %I:%M %p') }}</p>
+      </div>
+      {% if not n.is_read %}
+      <button class="btn btn-ghost btn-sm" onclick="markRead({{ n.id }})">Mark read</button>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="empty-state">
+    <p class="empty-hand">— all quiet —</p>
+    <h3>No alerts right now</h3>
+    <p>We'll remind you when pantry items are close to their expiry date.</p>
+    <a href="/pantry" class="btn btn-primary mt-md">Check Pantry</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function markRead(id) {
+  const res = await fetch('/api/notifications/'+id+'/read', {method:'PATCH'});
+  if (res.ok) {
+    const el = document.getElementById('notif-'+id);
+    el.classList.add('read');
+    el.querySelector('button')?.remove();
+  }
+}
+document.getElementById('clear-read-btn')?.addEventListener('click', async () => {
+  const res = await fetch('/api/notifications/read-all', {method:'DELETE'});
+  if (res.ok) { document.querySelectorAll('.notification-item.read').forEach(e=>e.remove()); showToast('Cleared'); }
+});
+</script>
+{% endblock %}

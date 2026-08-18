@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% block title %}{% if recipe %}Edit {{ recipe.title }}{% else %}New Recipe{% endif %} — My Pantry Book{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="page-header">
+    <h1>{% if recipe %}Edit Recipe{% else %}New Recipe{% endif %}</h1>
+    <a href="{% if recipe %}/recipes/{{ recipe.id }}{% else %}/recipes{% endif %}" class="btn btn-ghost btn-sm">
+      Back
+    </a>
+  </div>
+
+  <div class="form-card" style="max-width:760px;">
+    <form id="recipe-form">
+
+      <p class="form-section-title">Recipe Details</p>
+
+      <div class="form-group">
+        <label for="title">Recipe Name</label>
+        <input type="text" id="title" name="title" required placeholder="e.g. Crispy Masala Dosa"
+          value="{{ recipe.title if recipe else '' }}">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" style="min-height:80px;"
+          placeholder="A short, warm description of this dish…">{{ recipe.description if recipe else '' }}</textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cuisine">Cuisine</label>
+          <select id="cuisine" name="cuisine">
+            <option value="South Indian" {% if not recipe or recipe.cuisine == 'South Indian' %}selected{% endif %}>South Indian</option>
+            <option value="Tamil"       {% if recipe and recipe.cuisine == 'Tamil' %}selected{% endif %}>Tamil</option>
+            <option value="Kerala"      {% if recipe and recipe.cuisine == 'Kerala' %}selected{% endif %}>Kerala</option>
+            <option value="Karnataka"   {% if recipe and recipe.cuisine == 'Karnataka' %}selected{% endif %}>Karnataka</option>
+            <option value="Andhra"      {% if recipe and recipe.cuisine == 'Andhra' %}selected{% endif %}>Andhra</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty" name="difficulty">
+            <option value="easy"   {% if recipe and recipe.difficulty == 'easy' %}selected{% endif %}>Easy</option>
+            <option value="medium" {% if not recipe or recipe.difficulty == 'medium' %}selected{% endif %}>Medium</option>
+            <option value="hard"   {% if recipe and recipe.difficulty == 'hard' %}selected{% endif %}>Hard</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="prep_time">Prep Time (minutes)</label>
+          <input type="number" id="prep_time" name="prep_time_minutes" min="1" value="{{ recipe.prep_time_minutes if recipe else 30 }}">
+        </div>
+        <div class="form-group">
+          <label for="servings">Servings</label>
+          <input type="number" id="servings" name="servings" min="1" value="{{ recipe.servings if recipe else 4 }}">
+        </div>
+      </div>
+
+      <hr class="divider" style="margin:1.5rem 0;">
+      <p class="form-section-title">Instructions</p>
+      <p style="font-size:0.8rem; color:var(--color-text-muted); margin-bottom:0.75rem;">One step per line. They'll appear as numbered steps in the recipe.</p>
+      <div class="form-group">
+        <label for="instructions-text">Steps</label>
+        <textarea id="instructions-text" name="instructions_text" style="min-height:200px;"
+          placeholder="Soak idli rice and urad dal for 6 hours.&#10;Grind to a smooth batter.&#10;Allow to ferment overnight.&#10;Steam in idli moulds for 12-15 minutes.">{% if recipe and recipe.instructions %}{{ recipe.instructions | from_json_steps }}{% endif %}</textarea>
+      </div>
+
+      <hr class="divider" style="margin:1.5rem 0;">
+      <div class="flex justify-between items-center mb-md">
+        <p class="form-section-title" style="margin-bottom:0;">Ingredients</p>
+        <button type="button" class="btn btn-secondary btn-sm" id="add-ingredient-row">Add Row</button>
+      </div>
+
+      <div id="ingredients-container">
+        {% if recipe and recipe.recipe_ingredients %}
+          {% for ri in recipe.recipe_ingredients %}
+          <div class="ingredient-form-row" data-row>
+            <select name="ingredient_id" required>
+              <option value="">— Select —</option>
+              {% for ing in ingredients %}
+              <option value="{{ ing.id }}" {% if ing.id == ri.ingredient_id %}selected{% endif %}>{{ ing.name }}</option>
+              {% endfor %}
+            </select>
+            <input type="number" name="quantity_needed" placeholder="Qty" min="0.01" step="0.01" value="{{ ri.quantity_needed }}" required>
+            <select name="unit">
+              <option {% if ri.unit == 'grams' %}selected{% endif %}>grams</option>
+              <option {% if ri.unit == 'ml' %}selected{% endif %}>ml</option>
+              <option {% if ri.unit == 'pieces' %}selected{% endif %}>pieces</option>
+              <option {% if ri.unit == 'tbsp' %}selected{% endif %}>tbsp</option>
+              <option {% if ri.unit == 'tsp' %}selected{% endif %}>tsp</option>
+              <option {% if ri.unit == 'cups' %}selected{% endif %}>cups</option>
+            </select>
+            <button type="button" class="btn btn-danger" onclick="this.closest('[data-row]').remove()">Remove</button>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="ingredient-form-row" data-row>
+            <select name="ingredient_id" required>
+              <option value="">— Select —</option>
+              {% for ing in ingredients %}
+              <option value="{{ ing.id }}">{{ ing.name }}</option>
+              {% endfor %}
+            </select>
+            <input type="number" name="quantity_needed" placeholder="Qty" min="0.01" step="0.01" required>
+            <select name="unit">
+              <option>grams</option><option>ml</option><option>pieces</option>
+              <option>tbsp</option><option>tsp</option><option>cups</option>
+            </select>
+            <button type="button" class="btn btn-danger" onclick="this.closest('[data-row]').remove()">Remove</button>
+          </div>
+        {% endif %}
+      </div>
+
+      <hr class="divider" style="margin:1.5rem 0;">
+      <div class="flex gap-sm">
+        <button type="submit" class="btn btn-primary">
+          {% if recipe %}Save Changes{% else %}Add to Recipe Book{% endif %}
+        </button>
+        <a href="{% if recipe %}/recipes/{{ recipe.id }}{% else %}/recipes{% endif %}" class="btn btn-ghost">Cancel</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const RECIPE_ID = {{ recipe.id | tojson if recipe else 'null' }};
+const INGREDIENTS_HTML = `{% for ing in ingredients %}<option value="{{ ing.id }}">{{ ing.name }}</option>{% endfor %}`;
+
+document.getElementById('add-ingredient-row').addEventListener('click', () => {
+  const container = document.getElementById('ingredients-container');
+  const div = document.createElement('div');
+  div.className = 'ingredient-form-row';
+  div.dataset.row = '';
+  div.innerHTML = `
+    <select name="ingredient_id" required>
+      <option value="">— Select —</option>
+      ${INGREDIENTS_HTML}
+    </select>
+    <input type="number" name="quantity_needed" placeholder="Qty" min="0.01" step="0.01" required>
+    <select name="unit">
+      <option>grams</option><option>ml</option><option>pieces</option>
+      <option>tbsp</option><option>tsp</option><option>cups</option>
+    </select>
+    <button type="button" class="btn btn-danger" onclick="this.closest('[data-row]').remove()">Remove</button>
+  `;
+  container.appendChild(div);
+});
+
+document.getElementById('recipe-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const stepsText = document.getElementById('instructions-text').value.trim();
+  const steps = stepsText.split('\n').map(s => s.trim()).filter(Boolean);
+
+  const rows = form.querySelectorAll('[data-row]');
+  const ingredientsList = [];
+  for (const row of rows) {
+    const ing_id = row.querySelector('[name="ingredient_id"]').value;
+    const qty = row.querySelector('[name="quantity_needed"]').value;
+    const unit = row.querySelector('[name="unit"]').value;
+    if (ing_id && qty) ingredientsList.push({ ingredient_id: parseInt(ing_id), quantity_needed: parseFloat(qty), unit });
+  }
+
+  const payload = {
+    title: form.title.value,
+    description: form.description.value || null,
+    cuisine: form.cuisine.value,
+    difficulty: form.difficulty.value,
+    prep_time_minutes: parseInt(form.prep_time_minutes.value),
+    servings: parseInt(form.servings.value),
+    instructions: JSON.stringify(steps),
+    ingredients: ingredientsList,
+  };
+
+  const url = RECIPE_ID ? `/api/recipes/${RECIPE_ID}` : '/api/recipes';
+  const method = RECIPE_ID ? 'PUT' : 'POST';
+  const res = await fetch(url, { method, headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  if (res.ok) {
+    const data = await res.json();
+    showToast(RECIPE_ID ? 'Recipe updated' : 'Recipe added');
+    setTimeout(() => location.href = `/recipes/${data.id}`, 700);
+  } else {
+    const err = await res.json();
+    showToast(err.detail || 'Error saving recipe', 'error');
+  }
+});
+</script>
+{% endblock %}

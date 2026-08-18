@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}My Pantry Book{% endblock %}</title>
+  <meta name="description" content="{% block description %}A warm, cookbook-style recipe & pantry manager for South Indian home cooking.{% endblock %}">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23B84A2A'/><text y='24' x='6' font-size='20' fill='white' font-family='Georgia,serif' font-style='italic'>P</text></svg>">
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="/" class="navbar-brand">My <em>Pantry</em> Book</a>
+  <ul class="navbar-links">
+    <li><a href="/pantry"       {% if request.url.path == '/pantry' %}class="active"{% endif %}>Pantry</a></li>
+    <li><a href="/recipes"      {% if request.url.path.startswith('/recipes') %}class="active"{% endif %}>Recipes</a></li>
+    <li><a href="/suggestions"  {% if request.url.path == '/suggestions' %}class="active"{% endif %}>Suggestions</a></li>
+    <li>
+      <a href="/notifications" class="bell-link {% if request.url.path == '/notifications' %}active{% endif %}">
+        Alerts
+        {% if unread_count and unread_count > 0 %}
+        <span class="bell-badge">{{ unread_count }}</span>
+        {% endif %}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div class="toast-container" id="toast-container"></div>
+<main>{% block content %}{% endblock %}</main>
+
+<script>
+function showToast(msg, type='success') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
