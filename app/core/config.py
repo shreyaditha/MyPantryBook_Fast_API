@@ -11,12 +11,13 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+        extra = "ignore"
 
 
 settings = Settings()
 
-# If running on Vercel and DATABASE_URL is still the default relative SQLite path,
-# switch to /tmp/pantry.db because the project root on Vercel is read-only.
-if os.getenv("VERCEL") and settings.DATABASE_URL == "sqlite+aiosqlite:///./pantry.db":
+# On Vercel (or AWS Lambda environment), project root is read-only.
+# Redirect default SQLite path to /tmp/pantry.db unless a custom DATABASE_URL is set.
+is_serverless = bool(os.getenv("VERCEL") or os.getenv("AWS_LAMBDA_FUNCTION_NAME") or os.getenv("VERCEL_ENV"))
+if is_serverless and settings.DATABASE_URL == "sqlite+aiosqlite:///./pantry.db":
     settings.DATABASE_URL = "sqlite+aiosqlite:////tmp/pantry.db"
-

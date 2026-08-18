@@ -33,18 +33,21 @@ async def get_db():
 
 async def create_tables():
     """Create all tables and auto-seed initial recipes if empty."""
-    async with engine.begin() as conn:
-        from app.models import user, ingredient, pantry, recipe, notification  # noqa: F401
-        await conn.run_sync(Base.metadata.create_all)
-
-    # Auto-seed recipes if database has no recipes (e.g. on fresh Vercel container startup)
     try:
-        from app.models.recipe import Recipe
+        async with engine.begin() as conn:
+            from app.models import user, ingredient, pantry, recipe, notification  # noqa: F401
+            await conn.run_sync(Base.metadata.create_all)
+    except Exception as e:
+        print(f"[Database Table Warning] {e}")
+
+    # Auto-seed recipes if database has no recipes
+    try:
         async with AsyncSessionLocal() as session:
+            from app.models.recipe import Recipe
             res = await session.execute(select(func.count(Recipe.id)))
             count = res.scalar() or 0
             if count == 0:
-                json_path = Path(__file__).resolve().parent.parent.parent / "seeds" / "south_indian_recipes_seed.json"
+                json_path = Path(__file__).resolve().parents[2] / "seeds" / "south_indian_recipes_seed.json"
                 if json_path.exists():
                     from seeds.seed_full import seed
                     with open(json_path, encoding="utf-8") as f:
