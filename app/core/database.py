@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase
 
@@ -29,7 +32,23 @@ async def get_db():
 
 
 async def create_tables():
-    """Create all tables (used on startup in dev)."""
+    """Create all tables and auto-seed initial recipes if empty."""
     async with engine.begin() as conn:
         from app.models import user, ingredient, pantry, recipe, notification  # noqa: F401
         await conn.run_sync(Base.metadata.create_all)
+
+    # Auto-seed recipes if database has no recipes (e.g. on fresh Vercel container startup)
+    try:
+        from app.models.recipe import Recipe
+        async with AsyncSessionLocal() as session:
+            res = await session.execute(select(func.count(Recipe.id)))
+            count = res.scalar() or 0
+            if count == 0:
+                json_path = Path(__file__).resolve().parent.parent.parent / "seeds" / "south_indian_recipes_seed.json"
+                if json_path.exists():
+                    from seeds.seed_full import seed
+                    with open(json_path, encoding="utf-8") as f:
+                        data = json.load(f)
+                    await seed(session, data.get("recipes", []))
+    except Exception as e:
+        print(f"[Auto-seed Warning] {e}")
