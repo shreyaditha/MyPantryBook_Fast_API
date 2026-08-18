@@ -9,11 +9,21 @@ from fastapi.staticfiles import StaticFiles
 from app.core.database import create_tables
 
 
+import pathlib
+
+BASE_DIR = pathlib.Path(__file__).resolve().parent
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Create tables on startup."""
-    await create_tables()
-    os.makedirs("app/static/uploads", exist_ok=True)
+    """Create tables on startup (with graceful fallback for read-only serverless environments)."""
+    try:
+        await create_tables()
+    except Exception as e:
+        print(f"[Lifespan Warning] Could not create tables: {e}")
+    try:
+        os.makedirs(str(BASE_DIR / "static" / "uploads"), exist_ok=True)
+    except Exception:
+        pass
     yield
 
 
@@ -50,4 +60,4 @@ app.include_router(notifications.router, prefix="/api")
 app.include_router(views_router)
 
 # ── Static files mount LAST (catch-all sub-app) ────────────────────────────────
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
+app.mount("/static", StaticFiles(directory=str(BASE_DIR / "static")), name="static")

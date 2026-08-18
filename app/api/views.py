@@ -15,14 +15,18 @@ from app.models.pantry import PantryItem
 from app.models.ingredient import Ingredient
 from app.models.notification import Notification
 
+import pathlib
 import jinja2
 
 router = APIRouter(tags=["views"])
 
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = BASE_DIR / "templates"
+
 # Python 3.14 + Jinja2 3.1.6 has a bug where dict globals are passed as
 # unhashable LRU cache keys. Fix: use a plain dict cache (cache_size=0).
 _jinja_env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader("app/templates"),
+    loader=jinja2.FileSystemLoader(str(TEMPLATES_DIR)),
     cache_size=0,
     auto_reload=True,
 )

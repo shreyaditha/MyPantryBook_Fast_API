@@ -1,3 +1,4 @@
+import os
 from pydantic_settings import BaseSettings
 
 
@@ -13,3 +14,9 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+# If running on Vercel and DATABASE_URL is still the default relative SQLite path,
+# switch to /tmp/pantry.db because the project root on Vercel is read-only.
+if os.getenv("VERCEL") and settings.DATABASE_URL == "sqlite+aiosqlite:///./pantry.db":
+    settings.DATABASE_URL = "sqlite+aiosqlite:////tmp/pantry.db"
+
