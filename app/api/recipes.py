@@ -18,7 +18,10 @@ router = APIRouter(prefix="/recipes", tags=["recipes"])
 
 DEMO_USER_ID = settings.DEMO_USER_ID
 UPLOAD_DIR = "app/static/uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
+try:
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+except Exception:
+    pass
 
 
 def _recipe_to_out(recipe: Recipe, pantry_ids: Optional[set] = None) -> dict:
@@ -246,7 +249,14 @@ async def upload_recipe_image(
 
     ext = os.path.splitext(file.filename)[1] if file.filename else ".jpg"
     filename = f"recipe_{recipe_id}{ext}"
-    filepath = os.path.join(UPLOAD_DIR, filename)
+    target_dir = UPLOAD_DIR
+    try:
+        os.makedirs(target_dir, exist_ok=True)
+    except Exception:
+        target_dir = "/tmp/uploads"
+        os.makedirs(target_dir, exist_ok=True)
+
+    filepath = os.path.join(target_dir, filename)
     with open(filepath, "wb") as f:
         shutil.copyfileobj(file.file, f)
 
