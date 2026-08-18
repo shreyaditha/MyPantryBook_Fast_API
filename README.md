@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # My Pantry Book — Quick Start
 
 ## Start the server
@@ -28,3 +29,7 @@ Then open in your browser:
 ```powershell
 python -m seeds.seed_data
 ```
+=======
+# MyPantryBook_Fast_API
+A Recipe book website which sole purpose is to make me understand FastAPI
+>>>>>>> 0d6d0e4eaf30a551dfe958f93c29f3a16308596c
